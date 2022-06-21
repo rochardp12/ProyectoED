@@ -15,6 +15,7 @@ import java.util.Iterator;
 public class CircularDoubleLinkedList <E> implements List<E>,Iterable<E> {
     private Node<E> last;
     private int tam;
+    
 
     @Override
     public Iterator<E> iterator() {
