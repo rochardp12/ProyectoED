@@ -3,20 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Clases;
+package ec.edu.espol.model;
 
 /**
  *
  * @author Kevin Castro,Richard Perez
- * @param <E>
  */
-public class Album <E> {
+public class Persona {
     private String nombre;
-    private CircularDoubleLinkedList imagenes; 
 
-    public Album(String nombre, CircularDoubleLinkedList imagenes) {
+    public Persona(String nombre) {
         this.nombre = nombre;
-        this.imagenes = imagenes;
     }
 
     public void setNombre(String nombre) {
@@ -26,14 +23,4 @@ public class Album <E> {
     public String getNombre() {
         return nombre;
     }
-    
-
-    public void setImagenes(CircularDoubleLinkedList imagenes) {
-        this.imagenes = imagenes;
-    }
-
-    public CircularDoubleLinkedList getImagenes() {
-        return imagenes;
-    }
-    
 }
