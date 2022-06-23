@@ -5,6 +5,11 @@
  */
 package ec.edu.espol.model;
 import ec.edu.espol.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 /**
  *
  * @author Kevin Castro,Richard Perez
@@ -15,7 +20,7 @@ public class Album <E> {
     private CircularDoubleLinkedList imagenes; 
 
     public Album(String nombre, CircularDoubleLinkedList imagenes) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
         this.imagenes = imagenes;
     }
 
@@ -36,4 +41,15 @@ public class Album <E> {
         return imagenes;
     }
     
+    public void saveFile(String nomfile){
+        try(BufferedWriter bf = new BufferedWriter(new FileWriter(nomfile, true))){
+            bf.write(this.nombre);
+            Alert a = new Alert(AlertType.CONFIRMATION, "Álbum agregado con éxito");
+            a.show();
+        }
+        catch(IOException ex){
+            Alert a = new Alert(AlertType.ERROR, "No es posible agregarlo");
+            a.show();
+        }
+    }
 }

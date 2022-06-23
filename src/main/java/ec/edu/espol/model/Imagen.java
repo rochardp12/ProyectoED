@@ -7,6 +7,10 @@ package ec.edu.espol.model;
 
 import java.util.Date;
 import ec.edu.espol.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javafx.scene.control.Alert;
 /**
  *
  * @author Kevin Castro,Richard Perez
@@ -17,14 +21,14 @@ public class Imagen {
     private String lugar;
     private Date fecha;
     private String album;
-    private CircularDoubleLinkedList personas;
+    private CircularDoubleLinkedList<Persona> personas;
 
     public Imagen(String nImagen, String descripcion, String lugar, Date fecha, String album, CircularDoubleLinkedList personas) {
         this.url = nImagen;
         this.descripcion = descripcion;
-        this.lugar = lugar;
+        this.lugar = lugar.toUpperCase();
         this.fecha = fecha;
-        this.album = album;
+        this.album = album.toUpperCase();
         this.personas = personas;
     }
     
@@ -70,11 +74,23 @@ public class Imagen {
     }
 
     public void setAlbum(String album) {
-        this.album = album;
+        this.album = album.toUpperCase();
     }
 
     public void setPersonas(CircularDoubleLinkedList personas) {
         this.personas = personas;
+    }
+    
+    public void saveFile(String nomfile){
+        try(BufferedWriter bf = new BufferedWriter(new FileWriter(nomfile, true))){
+            bf.write(this.album + "|" + this.url + "|" + this.lugar + "|" + this.fecha + "|" + this.personas);
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Foto agregada con éxito");
+            a.show();
+        }
+        catch(IOException ex){
+            Alert a = new Alert(Alert.AlertType.ERROR, "No es posible agregarla");
+            a.show();
+        }
     }
     
 }

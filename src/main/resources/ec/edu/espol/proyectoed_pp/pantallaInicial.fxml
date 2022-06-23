@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controllers.PantallaInicialController">
    <top>
       <VBox alignment="TOP_CENTER" prefHeight="72.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -24,7 +22,7 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../../Desktop/universidad/4%20semestre/estructura%20de%20datos/808-8080413_naturaleza-png-flores-png-minus.png" />
+                        <Image url="@../../../../img/flores.png" />
                      </image>
                   </ImageView>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Álbumes">
@@ -34,7 +32,7 @@
                   </Text>
                   <ImageView fitHeight="60.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../../Desktop/universidad/4%20semestre/estructura%20de%20datos/808-8080413_naturaleza-png-flores-png-minus.png" />
+                        <Image url="@../../../../img/flores.png" />
                      </image>
                   </ImageView>
                </children>
@@ -63,10 +61,10 @@
       </GridPane>
    </bottom>
    <center>
-      <ScrollPane fx:id="panelAlbumes" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <HBox fx:id="hboxAlbumes" prefHeight="100.0" prefWidth="200.0" />
+         </content>
       </ScrollPane>
    </center>
 </BorderPane>

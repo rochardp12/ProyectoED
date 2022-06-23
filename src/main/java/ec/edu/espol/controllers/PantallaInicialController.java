@@ -10,8 +10,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 /**
  * FXML Controller class
@@ -29,7 +29,7 @@ public class PantallaInicialController implements Initializable {
     @FXML
     private Button btnBuscar;
     @FXML
-    private ScrollPane panelAlbumes;
+    private HBox hboxAlbumes;
 
     /**
      * Initializes the controller class.
