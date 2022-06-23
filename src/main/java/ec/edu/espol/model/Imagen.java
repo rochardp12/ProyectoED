@@ -5,11 +5,11 @@
  */
 package ec.edu.espol.model;
 
-import java.util.Date;
 import ec.edu.espol.util.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import javafx.scene.control.Alert;
 /**
  *
@@ -19,11 +19,11 @@ public class Imagen {
     private String url;
     private String descripcion;
     private String lugar;
-    private Date fecha;
+    private LocalDate fecha;
     private String album;
     private CircularDoubleLinkedList<Persona> personas;
 
-    public Imagen(String nImagen, String descripcion, String lugar, Date fecha, String album, CircularDoubleLinkedList personas) {
+    public Imagen(String nImagen, String descripcion, String lugar, LocalDate fecha, String album, CircularDoubleLinkedList personas) {
         this.url = nImagen;
         this.descripcion = descripcion;
         this.lugar = lugar.toUpperCase();
@@ -45,7 +45,7 @@ public class Imagen {
         return lugar;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
@@ -69,7 +69,7 @@ public class Imagen {
         this.lugar = lugar;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -83,7 +83,7 @@ public class Imagen {
     
     public void saveFile(String nomfile){
         try(BufferedWriter bf = new BufferedWriter(new FileWriter(nomfile, true))){
-            bf.write(this.album + "|" + this.url + "|" + this.lugar + "|" + this.fecha + "|" + this.personas);
+            bf.write(this.album + "|" + this.url + "|" + this.lugar + "|" + this.fecha + "|" + this.personas + "\n");
             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Foto agregada con éxito");
             a.show();
         }

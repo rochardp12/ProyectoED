@@ -5,6 +5,8 @@
  */
 package ec.edu.espol.controllers;
 
+import ec.edu.espol.model.Album;
+import ec.edu.espol.util.CircularDoubleLinkedList;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -36,7 +38,8 @@ public class PantallaInicialController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        CircularDoubleLinkedList albumes = Album.readFromFile("albumes.txt");
+        
     }    
 
     @FXML
