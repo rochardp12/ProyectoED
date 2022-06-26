@@ -88,6 +88,19 @@ public class PantallaInicialController implements Initializable {
 
     @FXML
     private void agregarFoto(MouseEvent event) {
+        try{
+            Stage stg = (Stage)btnAgregarFoto.getScene().getWindow();
+            stg.close();
+            FXMLLoader loader = App.loadFXML("pantallaAgregarFoto");
+            Scene sc = new Scene(loader.load(), 600, 400);
+            Stage sg = new Stage();
+            sg.setScene(sc);
+            sg.show();
+        }
+        catch(IOException ex){
+            Alert a = new Alert(Alert.AlertType.ERROR, "No es posible registrar nueva foto");
+            a.show();
+        }
     }
 
     @FXML

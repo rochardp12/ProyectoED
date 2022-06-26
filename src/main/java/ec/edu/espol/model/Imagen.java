@@ -22,6 +22,7 @@ public class Imagen {
     private LocalDate fecha;
     private String album;
     private CircularDoubleLinkedList<Persona> personas;
+    private String reaccion;
 
     public Imagen(String nImagen, String descripcion, String lugar, LocalDate fecha, String album, CircularDoubleLinkedList personas) {
         this.url = nImagen;
