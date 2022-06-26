@@ -5,12 +5,14 @@
  */
 package ec.edu.espol.util;
 
+import java.util.Iterator;
+
 /**
  *
  * @author Ipmsar
  * @param <E>
  */
-public class ArrayList <E> implements List <E> {
+public class ArrayList <E> implements List <E>, Iterable<E>{
     private E[] arreglo;
     private int capacidad;
     private int tam;
@@ -202,6 +204,24 @@ public class ArrayList <E> implements List <E> {
         }
         tam--;
         return false;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        Iterator<E> itera = new Iterator(){
+            int i=0;
+            @Override
+            public boolean hasNext() {
+                return i<tam && tam >=0;
+            }
+
+            @Override
+            public Object next() {
+                return arreglo[i++];
+            }
+            
+        };
+        return itera;
     }
     
 }
