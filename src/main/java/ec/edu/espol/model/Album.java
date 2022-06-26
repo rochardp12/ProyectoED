@@ -20,10 +20,12 @@ import javafx.scene.control.Alert.AlertType;
 public class Album <E> {
     private String nombre;
     private CircularDoubleLinkedList<Imagen> imagenes; 
+    private String desc;
 
-    public Album(String nombre) {
+    public Album(String nombre, String desc) {
         this.nombre = nombre.toUpperCase();
         this.imagenes = new CircularDoubleLinkedList<>();
+        this.desc = desc.toUpperCase();
     }
 
     public void setNombre(String nombre) {
@@ -43,9 +45,22 @@ public class Album <E> {
         return imagenes;
     }
     
+    public void setDesc(String desc){
+        this.desc = desc;
+    }
+    
+    public String getDesc(){
+        return desc;
+    }
+    
+    public static void crearAlbum(String nombre, String desc){
+        Album album = new Album(nombre,desc);
+        album.saveFile("albumes.txt");
+    }
+    
     public void saveFile(String nomfile){
         try(BufferedWriter bf = new BufferedWriter(new FileWriter(nomfile, true))){
-            bf.write("Nombre" + "|" + this.nombre + "\n");
+            bf.write(this.nombre + this.desc + "\n");
             Alert a = new Alert(AlertType.CONFIRMATION, "Álbum agregado con éxito");
             a.show();
         }
@@ -55,13 +70,13 @@ public class Album <E> {
         }
     }
     
-    public static CircularDoubleLinkedList<Album> readFromFile(String nomfile){
-        CircularDoubleLinkedList<Album> albumes = new CircularDoubleLinkedList<>();
+    public static ArrayList<Album> readFromFile(String nomfile){
+        ArrayList<Album> albumes = new ArrayList<>(0);
         try(BufferedReader bf = new BufferedReader(new FileReader(nomfile))){
             String linea;
             while((linea = bf.readLine()) != null){
                 String[] arreglo = linea.split("\\|");
-                Album album = new Album(arreglo[1]);
+                Album album = new Album(arreglo[0],arreglo[1]);
                 albumes.addLast(album);
             }
         }
