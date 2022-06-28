@@ -6,6 +6,7 @@
 package ec.edu.espol.controllers;
 
 import ec.edu.espol.model.Album;
+import ec.edu.espol.model.AlbumExistenteException;
 import ec.edu.espol.model.PanelVacioException;
 import ec.edu.espol.proyectoed_pp.App;
 import java.io.IOException;
@@ -54,9 +55,11 @@ public class PantallaCrearAlbumController implements Initializable {
         try{
             if(Objects.equals(infoNombre.getText(),"") || Objects.equals(infoDesc.getText(),""))
                 throw new PanelVacioException("Ingrese todos los datos por favor");
+            if(Album.verificarNombreAlbum(infoNombre.getText().toUpperCase()))
+                throw new AlbumExistenteException("Nombre de album ya existente, ingrese uno nuevo");
             Album.crearAlbum(infoNombre.getText(), infoDesc.getText());
         }
-        catch(PanelVacioException ex){
+        catch(PanelVacioException | AlbumExistenteException ex){
             Alert a = new Alert(AlertType.ERROR, ex.getMessage());
             a.show();
         }
@@ -68,7 +71,7 @@ public class PantallaCrearAlbumController implements Initializable {
             Stage stg = (Stage)btnRegresar.getScene().getWindow();
             stg.close();
             FXMLLoader loader = App.loadFXML("pantallaInicial");
-            Scene sc = new Scene(loader.load(), 600, 400);
+            Scene sc = new Scene(loader.load(), 640, 480);
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();

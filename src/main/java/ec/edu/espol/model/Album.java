@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 /**
@@ -60,7 +61,7 @@ public class Album <E> {
     
     public void saveFile(String nomfile){
         try(BufferedWriter bf = new BufferedWriter(new FileWriter(nomfile, true))){
-            bf.write(this.nombre + this.desc + "\n");
+            bf.write(this.nombre + "|" + this.desc + "\n");
             Alert a = new Alert(AlertType.CONFIRMATION, "Álbum agregado con éxito");
             a.show();
         }
@@ -85,5 +86,14 @@ public class Album <E> {
             a.show();
         }
         return albumes;
+    }
+    
+    public static boolean verificarNombreAlbum(String nombre){
+        ArrayList<Album> albumes = readFromFile("albumes.txt");
+        for(Album album: albumes){
+            if(Objects.equals(nombre,album.nombre))
+                return true;
+        }
+        return false;
     }
 }

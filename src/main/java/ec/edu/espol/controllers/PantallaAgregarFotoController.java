@@ -60,7 +60,7 @@ public class PantallaAgregarFotoController implements Initializable {
         try{
             Stage stg = (Stage)btnSiguiente.getScene().getWindow();
             FXMLLoader loader = App.loadFXML("pantallaAgregarFotoSiguiente");
-            Scene sc = new Scene(loader.load(), 600, 400);
+            Scene sc = new Scene(loader.load(), 640, 480);
             stg.setScene(sc);
         }
         catch(IOException ex){
@@ -75,7 +75,7 @@ public class PantallaAgregarFotoController implements Initializable {
             Stage stg = (Stage)btnRegresar.getScene().getWindow();
             stg.close();
             FXMLLoader loader = App.loadFXML("pantallaInicial");
-            Scene sc = new Scene(loader.load(), 600, 400);
+            Scene sc = new Scene(loader.load(), 640, 480);
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();

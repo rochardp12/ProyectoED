@@ -63,16 +63,12 @@
    </bottom>
    <center>
       <ScrollPane prefHeight="256.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <content>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <center>
-                  <HBox fx:id="hboxAlbumes" alignment="CENTER" prefHeight="200.0" prefWidth="240.0" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-         </content>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
+         <content>
+            <HBox fx:id="hboxAlbumes" alignment="CENTER" prefHeight="230.0" prefWidth="240.0" />
+         </content>
       </ScrollPane>
    </center>
 </BorderPane>

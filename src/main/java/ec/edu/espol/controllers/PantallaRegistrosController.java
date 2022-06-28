@@ -5,14 +5,10 @@
  */
 package ec.edu.espol.controllers;
 
-import ec.edu.espol.model.Album;
 import ec.edu.espol.model.NombreUsuarioException;
 import ec.edu.espol.model.PanelVacioException;
 import ec.edu.espol.model.Usuario;
 import ec.edu.espol.proyectoed_pp.App;
-import ec.edu.espol.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -31,18 +27,22 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Richard
+ * @author User
  */
-public class PantallaIniciarSesionController implements Initializable {
+public class PantallaRegistrosController implements Initializable {
 
     @FXML
-    private TextField infoUsuario;
+    private TextField infoNombre;
     @FXML
-    private Button btnIniciar;
+    private TextField infoApellido;
+    @FXML
+    private TextField infoUsuario;
     @FXML
     private TextField infoContra;
     @FXML
     private Button btnRegistrar;
+    @FXML
+    private Button btnRegresar;
 
     /**
      * Initializes the controller class.
@@ -53,15 +53,14 @@ public class PantallaIniciarSesionController implements Initializable {
     }    
 
     @FXML
-    private void iniciarSesion(MouseEvent event) {
-        ArrayList<Usuario> usuarios = Usuario.readFromFile("usuarios.txt");
+    private void registrarUsuario(MouseEvent event) {
         try{
-            if(Objects.equals(infoUsuario.getText(),"") || Objects.equals(infoContra.getText(),""))
+            if(Objects.equals(infoNombre.getText(),"") || Objects.equals(infoApellido.getText(),"") ||
+                    Objects.equals(infoUsuario.getText(),"") || Objects.equals(infoContra.getText(),""))
                 throw new PanelVacioException("Llenar todos los datos por favor");
-            for(Usuario usuario: usuarios){
-                if(!(Usuario.verificarNombreUsuario(infoUsuario.getText())))
-                    throw new NombreUsuarioException("Usuario no registrado. Registrar primero por favor");
-            }
+            if(Usuario.verificarNombreUsuario(infoUsuario.getText()))
+                throw new NombreUsuarioException("Nombre de usuario ya existente. Escoger otro por favor");
+            Usuario.crearUsuario(infoNombre.getText(),infoApellido.getText(),infoUsuario.getText(),infoContra.getText());
         }
         catch(PanelVacioException | NombreUsuarioException ex){
             Alert a = new Alert(AlertType.ERROR, ex.getMessage());
@@ -70,18 +69,18 @@ public class PantallaIniciarSesionController implements Initializable {
     }
 
     @FXML
-    private void registrarUsuario(MouseEvent event) {
+    private void regresarInicioSesion(MouseEvent event) {
         try{
             Stage stg = (Stage)btnRegistrar.getScene().getWindow();
             stg.close();
-            FXMLLoader loader = App.loadFXML("pantallaRegistros");
+            FXMLLoader loader = App.loadFXML("pantallaIniciarSesion");
             Scene sc = new Scene(loader.load(), 640, 480);
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();
         }
         catch(IOException ex){
-            Alert a = new Alert(Alert.AlertType.ERROR, "No es posible registrar nuevo usuario");
+            Alert a = new Alert(Alert.AlertType.ERROR, "No es posible regresar");
             a.show();
         }
     }

@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -53,14 +54,15 @@ public class PantallaInicialController implements Initializable {
         for(Album album: albumes){
             VBox vboxAlbumes = new VBox();
             Label lbl = new Label();
-            Image img = new Image("img/carpeta.jpg");
+            Image img = new Image("img/carpeta.png");
             ImageView imgview = new ImageView(img); //falta poner opcion de acceder al album al darle click a la imagen
-            imgview.setFitHeight(100);
-            imgview.setFitWidth(110);
+            imgview.setFitHeight(280);
+            imgview.setFitWidth(200);
             lbl.setText(album.getNombre());
             vboxAlbumes.getChildren().add(lbl);
             vboxAlbumes.getChildren().add(imgview);
             vboxAlbumes.setSpacing(10);
+            vboxAlbumes.setAlignment(Pos.CENTER);
             hboxAlbumes.getChildren().add(vboxAlbumes);
         }
     }    
@@ -71,7 +73,7 @@ public class PantallaInicialController implements Initializable {
             Stage stg = (Stage)btnNuevoAlbum.getScene().getWindow();
             stg.close();
             FXMLLoader loader = App.loadFXML("pantallaCrearAlbum");
-            Scene sc = new Scene(loader.load(), 600, 400);
+            Scene sc = new Scene(loader.load(), 640, 480);
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();
@@ -92,7 +94,7 @@ public class PantallaInicialController implements Initializable {
             Stage stg = (Stage)btnAgregarFoto.getScene().getWindow();
             stg.close();
             FXMLLoader loader = App.loadFXML("pantallaAgregarFoto");
-            Scene sc = new Scene(loader.load(), 600, 400);
+            Scene sc = new Scene(loader.load(), 640, 480);
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();

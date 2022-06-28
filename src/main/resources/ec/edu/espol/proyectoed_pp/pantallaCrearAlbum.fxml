@@ -42,7 +42,7 @@
       </VBox>
    </top>
    <bottom>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="84.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -52,14 +52,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnCrearAlbum" mnemonicParsing="false" onMouseClicked="#crearAlbum" text="CREAR" />
-            <Button fx:id="btnRegresar" mnemonicParsing="false" onMouseClicked="#regresarPrincipal" text="REGRESAR" GridPane.columnIndex="2" />
-            <Button fx:id="btnLimpiar" mnemonicParsing="false" onMouseClicked="#limpiarDatos" text="LIMPIAR" GridPane.columnIndex="1" />
+            <Button fx:id="btnCrearAlbum" mnemonicParsing="false" onMouseClicked="#crearAlbum" prefHeight="39.0" prefWidth="89.0" text="CREAR" />
+            <Button fx:id="btnRegresar" mnemonicParsing="false" onMouseClicked="#regresarPrincipal" prefHeight="43.0" prefWidth="99.0" text="REGRESAR" GridPane.columnIndex="2" />
+            <Button fx:id="btnLimpiar" mnemonicParsing="false" onMouseClicked="#limpiarDatos" prefHeight="41.0" prefWidth="87.0" text="LIMPIAR" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </bottom>
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="231.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="499.0" minWidth="10.0" prefWidth="298.0" />
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="365.0" minWidth="10.0" prefWidth="247.0" />
