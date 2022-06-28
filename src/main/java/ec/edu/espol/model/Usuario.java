@@ -103,6 +103,15 @@ public class Usuario {
         return false;
     }
     
+    public static boolean verificarContra(String contra){
+        ArrayList<Usuario> usuarios = readFromFile("usuarios.txt");
+        for(Usuario usuario: usuarios){
+            if(Objects.equals(contra,usuario.contra))
+                return true;
+        }
+        return false;
+    }
+    
     public static void crearUsuario(String nombre, String apellido, String nombreUsuario, String contra){
         Usuario usuario = new Usuario(nombre,apellido, nombreUsuario, contra);
         usuario.saveFile("usuarios.txt");

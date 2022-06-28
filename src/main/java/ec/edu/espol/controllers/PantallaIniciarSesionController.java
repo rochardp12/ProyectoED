@@ -6,6 +6,7 @@
 package ec.edu.espol.controllers;
 
 import ec.edu.espol.model.Album;
+import ec.edu.espol.model.ContraException;
 import ec.edu.espol.model.NombreUsuarioException;
 import ec.edu.espol.model.PanelVacioException;
 import ec.edu.espol.model.Usuario;
@@ -62,8 +63,10 @@ public class PantallaIniciarSesionController implements Initializable {
                 if(!(Usuario.verificarNombreUsuario(infoUsuario.getText())))
                     throw new NombreUsuarioException("Usuario no registrado. Registrar primero por favor");
             }
+            if(!(Usuario.verificarContra(infoContra.getText())))
+                throw new ContraException("Contraseña incorrecta");
         }
-        catch(PanelVacioException | NombreUsuarioException ex){
+        catch(PanelVacioException | NombreUsuarioException | ContraException ex){
             Alert a = new Alert(AlertType.ERROR, ex.getMessage());
             a.show();
         }
