@@ -55,8 +55,8 @@ public class PantallaInicialController implements Initializable {
             Label lbl = new Label();
             Image img = new Image("img/carpeta.jpg");
             ImageView imgview = new ImageView(img); //falta poner opcion de acceder al album al darle click a la imagen
-            imgview.setFitHeight(20);
-            imgview.setFitWidth(30);
+            imgview.setFitHeight(100);
+            imgview.setFitWidth(110);
             lbl.setText(album.getNombre());
             vboxAlbumes.getChildren().add(lbl);
             vboxAlbumes.getChildren().add(imgview);

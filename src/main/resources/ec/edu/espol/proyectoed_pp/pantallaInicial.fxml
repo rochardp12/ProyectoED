@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -42,7 +43,7 @@
       </VBox>
    </top>
    <bottom>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="95.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -61,10 +62,17 @@
       </GridPane>
    </bottom>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="256.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <content>
-            <HBox fx:id="hboxAlbumes" prefHeight="100.0" prefWidth="200.0" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <HBox fx:id="hboxAlbumes" alignment="CENTER" prefHeight="200.0" prefWidth="240.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
          </content>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </ScrollPane>
    </center>
 </BorderPane>

@@ -71,7 +71,7 @@ public class Album <E> {
     }
     
     public static ArrayList<Album> readFromFile(String nomfile){
-        ArrayList<Album> albumes = new ArrayList<>(0);
+        ArrayList<Album> albumes = new ArrayList<>(1);
         try(BufferedReader bf = new BufferedReader(new FileReader(nomfile))){
             String linea;
             while((linea = bf.readLine()) != null){
