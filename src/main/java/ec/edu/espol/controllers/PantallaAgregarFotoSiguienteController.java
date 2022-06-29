@@ -5,6 +5,7 @@
  */
 package ec.edu.espol.controllers;
 
+import ec.edu.espol.model.Usuario;
 import ec.edu.espol.proyectoed_pp.App;
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +36,7 @@ public class PantallaAgregarFotoSiguienteController implements Initializable {
     private Button btnPersonas;
     @FXML
     private Button btnFoto;
-    private String nombre;
+    private Usuario usuario;
     /**
      * Initializes the controller class.
      */
@@ -55,7 +56,7 @@ public class PantallaAgregarFotoSiguienteController implements Initializable {
             FXMLLoader loader = App.loadFXML("pantallaAgregarFoto");
             Scene sc = new Scene(loader.load(), 640, 480);
             PantallaAgregarFotoController pac = loader.getController();
-            pac.recibirUsuario(this.nombre);
+            pac.recibirUsuario(this.usuario);
             stg.setScene(sc);
         }
         catch(IOException ex){
@@ -76,7 +77,7 @@ public class PantallaAgregarFotoSiguienteController implements Initializable {
     private void buscarFoto(MouseEvent event) {
     }
     
-    public void recibirUsuario(String nombre){
-        this.nombre = nombre;
+    public void recibirUsuario(Usuario usuario){
+        this.usuario = usuario;
     }
 }

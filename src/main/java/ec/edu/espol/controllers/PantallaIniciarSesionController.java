@@ -68,8 +68,7 @@ public class PantallaIniciarSesionController implements Initializable {
             FXMLLoader loader = App.loadFXML("pantallaInicial");
             Scene sc = new Scene(loader.load(), 640, 480);
             PantallaInicialController pic = loader.getController();
-            Usuario u = Usuario.verificarNombreUsuario(infoUsuario.getText());
-            pic.recibirUsuario(u.getNombre());
+            pic.recibirUsuario(Usuario.verificarNombreUsuario(infoUsuario.getText()));
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();

@@ -47,7 +47,7 @@ public class PantallaInicialController implements Initializable {
     private HBox hboxAlbumes;
     @FXML
     private Text lblNombres;
-    private String nombre;
+    private Usuario usuario;
     @FXML
     private Button btnCerrar;
 
@@ -103,7 +103,7 @@ public class PantallaInicialController implements Initializable {
             FXMLLoader loader = App.loadFXML("pantallaAgregarFoto");
             Scene sc = new Scene(loader.load(), 640, 480);
             PantallaAgregarFotoController pac = loader.getController();
-            pac.recibirUsuario(this.nombre);
+            pac.recibirUsuario(this.usuario);
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();
@@ -118,9 +118,9 @@ public class PantallaInicialController implements Initializable {
     private void buscar(MouseEvent event) {
     }
     
-    public void recibirUsuario(String nombre){
-        lblNombres.setText("Álbumes de " + nombre);
-        this.nombre = nombre;
+    public void recibirUsuario(Usuario usuario){
+        lblNombres.setText("Álbumes de " + usuario.getNombre());
+        this.usuario = usuario;
     }
 
     @FXML
