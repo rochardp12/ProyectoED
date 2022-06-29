@@ -24,6 +24,7 @@ public class Usuario {
     private String contra;
     private String nombre;
     private String apellido;
+    private ArrayList<Album> albumes;
     
     public Usuario(String nombre, String apellido, String nombreUsuario, String contra){
         this.nombre = nombre;
@@ -76,7 +77,7 @@ public class Usuario {
             a.show();
         }
     }
-    
+
     public static ArrayList<Usuario> readFromFile(String nomfile){
         ArrayList<Usuario> usuarios = new ArrayList<>(1);
         try(BufferedReader bf = new BufferedReader(new FileReader(nomfile))){
