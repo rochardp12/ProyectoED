@@ -26,10 +26,10 @@ public class Usuario {
     private String apellido;
     
     public Usuario(String nombre, String apellido, String nombreUsuario, String contra){
-        this.nombreUsuario = nombreUsuario;
-        this.contra = contra;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.nombreUsuario = nombreUsuario.toUpperCase();
+        this.contra = contra.toUpperCase();
     }
 
     public String getNombreUsuario() {
@@ -94,22 +94,22 @@ public class Usuario {
         return usuarios;
     }
     
-    public static boolean verificarNombreUsuario(String nombre){
+    public static Usuario verificarNombreUsuario(String nombre){
         ArrayList<Usuario> usuarios = readFromFile("usuarios.txt");
         for(Usuario usuario: usuarios){
-            if(Objects.equals(nombre,usuario.nombreUsuario))
-                return true;
+            if(Objects.equals(nombre.toUpperCase(),usuario.nombreUsuario))
+                return usuario;
         }
-        return false;
+        return null;
     }
     
-    public static boolean verificarContra(String contra){
+    public static Usuario verificarContra(String contra, String nombreUsuario){
         ArrayList<Usuario> usuarios = readFromFile("usuarios.txt");
         for(Usuario usuario: usuarios){
-            if(Objects.equals(contra,usuario.contra))
-                return true;
+            if(Objects.equals(contra.toUpperCase(),usuario.contra) && Objects.equals(nombreUsuario.toUpperCase(), usuario.nombreUsuario))
+                return usuario;
         }
-        return false;
+        return null;
     }
     
     public static void crearUsuario(String nombre, String apellido, String nombreUsuario, String contra){

@@ -46,6 +46,7 @@ public class PantallaAgregarFotoController implements Initializable {
     private TextField infoMarcaCam;
     @FXML
     private TextField infoModeloCam;
+    private String nombre;
 
     /**
      * Initializes the controller class.
@@ -61,6 +62,8 @@ public class PantallaAgregarFotoController implements Initializable {
             Stage stg = (Stage)btnSiguiente.getScene().getWindow();
             FXMLLoader loader = App.loadFXML("pantallaAgregarFotoSiguiente");
             Scene sc = new Scene(loader.load(), 640, 480);
+            PantallaAgregarFotoSiguienteController pasc = loader.getController();
+            pasc.recibirUsuario(this.nombre);
             stg.setScene(sc);
         }
         catch(IOException ex){
@@ -76,6 +79,8 @@ public class PantallaAgregarFotoController implements Initializable {
             stg.close();
             FXMLLoader loader = App.loadFXML("pantallaInicial");
             Scene sc = new Scene(loader.load(), 640, 480);
+            PantallaInicialController pic = loader.getController();
+            pic.recibirUsuario(this.nombre);
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();
@@ -85,7 +90,8 @@ public class PantallaAgregarFotoController implements Initializable {
             a.show();
         }
     }
-
-
     
+    public void recibirUsuario(String nombre){
+        this.nombre = nombre;
+    }
 }

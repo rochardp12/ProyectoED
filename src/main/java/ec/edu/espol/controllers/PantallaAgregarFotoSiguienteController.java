@@ -35,7 +35,7 @@ public class PantallaAgregarFotoSiguienteController implements Initializable {
     private Button btnPersonas;
     @FXML
     private Button btnFoto;
-
+    private String nombre;
     /**
      * Initializes the controller class.
      */
@@ -54,6 +54,8 @@ public class PantallaAgregarFotoSiguienteController implements Initializable {
             Stage stg = (Stage)btnAnterior.getScene().getWindow();
             FXMLLoader loader = App.loadFXML("pantallaAgregarFoto");
             Scene sc = new Scene(loader.load(), 640, 480);
+            PantallaAgregarFotoController pac = loader.getController();
+            pac.recibirUsuario(this.nombre);
             stg.setScene(sc);
         }
         catch(IOException ex){
@@ -74,4 +76,7 @@ public class PantallaAgregarFotoSiguienteController implements Initializable {
     private void buscarFoto(MouseEvent event) {
     }
     
+    public void recibirUsuario(String nombre){
+        this.nombre = nombre;
+    }
 }

@@ -58,7 +58,7 @@ public class PantallaRegistrosController implements Initializable {
             if(Objects.equals(infoNombre.getText(),"") || Objects.equals(infoApellido.getText(),"") ||
                     Objects.equals(infoUsuario.getText(),"") || Objects.equals(infoContra.getText(),""))
                 throw new PanelVacioException("Llenar todos los datos por favor");
-            if(Usuario.verificarNombreUsuario(infoUsuario.getText()))
+            if(Usuario.verificarNombreUsuario(infoUsuario.getText()) != null)
                 throw new NombreUsuarioException("Nombre de usuario ya existente. Escoger otro por favor");
             Usuario.crearUsuario(infoNombre.getText(),infoApellido.getText(),infoUsuario.getText(),infoContra.getText());
         }

@@ -6,6 +6,7 @@
 package ec.edu.espol.controllers;
 
 import ec.edu.espol.model.Album;
+import ec.edu.espol.model.Usuario;
 import ec.edu.espol.proyectoed_pp.App;
 import ec.edu.espol.util.ArrayList;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -43,6 +45,11 @@ public class PantallaInicialController implements Initializable {
     private Button btnBuscar;
     @FXML
     private HBox hboxAlbumes;
+    @FXML
+    private Text lblNombres;
+    private String nombre;
+    @FXML
+    private Button btnCerrar;
 
     /**
      * Initializes the controller class.
@@ -95,6 +102,8 @@ public class PantallaInicialController implements Initializable {
             stg.close();
             FXMLLoader loader = App.loadFXML("pantallaAgregarFoto");
             Scene sc = new Scene(loader.load(), 640, 480);
+            PantallaAgregarFotoController pac = loader.getController();
+            pac.recibirUsuario(this.nombre);
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();
@@ -109,4 +118,25 @@ public class PantallaInicialController implements Initializable {
     private void buscar(MouseEvent event) {
     }
     
+    public void recibirUsuario(String nombre){
+        lblNombres.setText("Álbumes de " + nombre);
+        this.nombre = nombre;
+    }
+
+    @FXML
+    private void cerrarSesion(MouseEvent event) {
+        try{
+            Stage stg = (Stage)btnCerrar.getScene().getWindow();
+            stg.close();
+            FXMLLoader loader = App.loadFXML("pantallaIniciarSesion");
+            Scene sc = new Scene(loader.load(), 640, 480);
+            Stage sg = new Stage();
+            sg.setScene(sc);
+            sg.show();
+        }
+        catch(IOException ex){
+            Alert a = new Alert(Alert.AlertType.ERROR, "No es posible cerrar sesión");
+            a.show();
+        }
+    }
 }

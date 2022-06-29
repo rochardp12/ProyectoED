@@ -55,19 +55,31 @@ public class PantallaIniciarSesionController implements Initializable {
 
     @FXML
     private void iniciarSesion(MouseEvent event) {
-        ArrayList<Usuario> usuarios = Usuario.readFromFile("usuarios.txt");
+        ArrayList<Usuario> usuarios = Usuario.readFromFile("usuarios.txt"); 
         try{
             if(Objects.equals(infoUsuario.getText(),"") || Objects.equals(infoContra.getText(),""))
                 throw new PanelVacioException("Llenar todos los datos por favor");
-            for(Usuario usuario: usuarios){
-                if(!(Usuario.verificarNombreUsuario(infoUsuario.getText())))
-                    throw new NombreUsuarioException("Usuario no registrado. Registrar primero por favor");
-            }
-            if(!(Usuario.verificarContra(infoContra.getText())))
+            if(Usuario.verificarNombreUsuario(infoUsuario.getText()) == null)
+                throw new NombreUsuarioException("Usuario no registrado. Registrar primero por favor");
+            if(Usuario.verificarContra(infoContra.getText(),infoUsuario.getText()) == null)
                 throw new ContraException("Contraseña incorrecta");
+            Stage stg = (Stage) btnIniciar.getScene().getWindow();
+            stg.close();
+            FXMLLoader loader = App.loadFXML("pantallaInicial");
+            Scene sc = new Scene(loader.load(), 640, 480);
+            PantallaInicialController pic = loader.getController();
+            Usuario u = Usuario.verificarNombreUsuario(infoUsuario.getText());
+            pic.recibirUsuario(u.getNombre());
+            Stage sg = new Stage();
+            sg.setScene(sc);
+            sg.show();
         }
-        catch(PanelVacioException | NombreUsuarioException | ContraException ex){
+        catch(PanelVacioException | NombreUsuarioException  | ContraException ex){
             Alert a = new Alert(AlertType.ERROR, ex.getMessage());
+            a.show();
+        }
+        catch(IOException ex){
+            Alert a = new Alert(Alert.AlertType.ERROR, "No es posible iniciar sesión");
             a.show();
         }
     }

@@ -26,7 +26,7 @@
                         <Image url="@../../../../img/flores.png" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Álbumes">
+                  <Text fx:id="lblNombres" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font name="Comic Sans MS" size="44.0" />
                      </font>
@@ -49,6 +49,7 @@
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -58,6 +59,7 @@
             <Button fx:id="btnEliminarAlbum" mnemonicParsing="false" onMouseClicked="#eliminarAlbum" prefHeight="47.0" prefWidth="113.0" text="ELIMINAR ÁLBUM" GridPane.columnIndex="1" />
             <Button fx:id="btnAgregarFoto" mnemonicParsing="false" onMouseClicked="#agregarFoto" prefHeight="47.0" prefWidth="105.0" text="AGREGAR FOTO" GridPane.columnIndex="2" />
             <Button fx:id="btnBuscar" mnemonicParsing="false" onMouseClicked="#buscar" prefHeight="47.0" prefWidth="88.0" text="BUSCAR" GridPane.columnIndex="3" />
+            <Button fx:id="btnCerrar" mnemonicParsing="false" onMouseClicked="#cerrarSesion" prefHeight="29.0" prefWidth="49.0" text="&lt;&lt;&gt;&gt;" GridPane.columnIndex="4" />
          </children>
       </GridPane>
    </bottom>
