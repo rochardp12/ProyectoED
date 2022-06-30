@@ -16,28 +16,12 @@ public class CircularDoubleLinkedList <E> implements List<E>,Iterable<E> {
     private Node<E> last;
     private int tam;
     
-
-    @Override
-    public Iterator<E> iterator() {
-        Iterator<E> it = new Iterator<E>(){
-            Node<E> n = last.siguiente;
-            @Override
-            public boolean hasNext() {
-                return n!=null;
-            }
-
-            @Override
-            public E next() {
-                E temp = n.contenido;
-                n = n.siguiente;
-                return temp;
-            }
-            
-        };
-        return it;
+    public CircularDoubleLinkedList(){
+        last=null;
+        tam=0;
     }
     
-    private class Node<E>{
+     private class Node<E>{
         private E contenido;
         private Node<E> siguiente;
         private Node<E> anterior;
@@ -71,10 +55,7 @@ public class CircularDoubleLinkedList <E> implements List<E>,Iterable<E> {
         return n;
     }
     
-    public CircularDoubleLinkedList(){
-        last=null;
-        tam=0;
-    }
+    
 
     @Override
     public boolean addFirst(E e) {
@@ -97,6 +78,29 @@ public class CircularDoubleLinkedList <E> implements List<E>,Iterable<E> {
         return true;
        
     }
+    
+
+    @Override
+    public Iterator<E> iterator() {
+        Iterator<E> it = new Iterator<E>(){
+            Node<E> n = last.siguiente;
+            @Override
+            public boolean hasNext() {
+                return n!=null;
+            }
+
+            @Override
+            public E next() {
+                E temp = n.contenido;
+                n = n.siguiente;
+                return temp;
+            }
+            
+        };
+        return it;
+    }
+    
+   
 
     @Override
     public boolean addLast(E e) {
