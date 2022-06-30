@@ -9,6 +9,8 @@ import ec.edu.espol.model.NombreUsuarioException;
 import ec.edu.espol.model.PanelVacioException;
 import ec.edu.espol.model.Usuario;
 import ec.edu.espol.proyectoed_pp.App;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -60,7 +62,7 @@ public class PantallaRegistrosController implements Initializable {
                 throw new PanelVacioException("Llenar todos los datos por favor");
             if(Usuario.verificarNombreUsuario(infoUsuario.getText()) != null)
                 throw new NombreUsuarioException("Nombre de usuario ya existente. Escoger otro por favor");
-            Usuario.crearUsuario(infoNombre.getText(),infoApellido.getText(),infoUsuario.getText(),infoContra.getText());
+            Usuario.crearUsuario(infoNombre.getText(),infoApellido.getText(),infoUsuario.getText(),infoContra.getText());  
         }
         catch(PanelVacioException | NombreUsuarioException ex){
             Alert a = new Alert(AlertType.ERROR, ex.getMessage());

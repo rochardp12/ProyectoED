@@ -11,6 +11,7 @@ import ec.edu.espol.proyectoed_pp.App;
 import ec.edu.espol.util.ArrayList;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,28 +51,14 @@ public class PantallaInicialController implements Initializable {
     private Usuario usuario;
     @FXML
     private Button btnCerrar;
+    @FXML
+    private Button btnVisualizar;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        hboxAlbumes.getChildren().clear();
-        ArrayList<Album> albumes = Album.readFromFile("albumes.txt");
-        for(Album album: albumes){
-            VBox vboxAlbumes = new VBox();
-            Label lbl = new Label();
-            Image img = new Image("img/carpeta.png");
-            ImageView imgview = new ImageView(img); //falta poner opcion de acceder al album al darle click a la imagen
-            imgview.setFitHeight(280);
-            imgview.setFitWidth(200);
-            lbl.setText(album.getNombre());
-            vboxAlbumes.getChildren().add(lbl);
-            vboxAlbumes.getChildren().add(imgview);
-            vboxAlbumes.setSpacing(10);
-            vboxAlbumes.setAlignment(Pos.CENTER);
-            hboxAlbumes.getChildren().add(vboxAlbumes);
-        }
     }    
 
     @FXML
@@ -81,6 +68,8 @@ public class PantallaInicialController implements Initializable {
             stg.close();
             FXMLLoader loader = App.loadFXML("pantallaCrearAlbum");
             Scene sc = new Scene(loader.load(), 640, 480);
+            PantallaCrearAlbumController pcac = loader.getController();
+            pcac.recibirUsuario(this.usuario);
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();
@@ -93,6 +82,21 @@ public class PantallaInicialController implements Initializable {
 
     @FXML
     private void eliminarAlbum(MouseEvent event) {
+        try{
+            Stage stg = (Stage)btnEliminarAlbum.getScene().getWindow();
+            stg.close();
+            FXMLLoader loader = App.loadFXML("pantallaEliminarAlbum");
+            Scene sc = new Scene(loader.load(), 640, 480);
+            PantallaEliminarAlbumController peac = loader.getController();
+            peac.recibirUsuario(this.usuario);
+            Stage sg = new Stage();
+            sg.setScene(sc);
+            sg.show();
+        }
+        catch(IOException ex){
+            Alert a = new Alert(Alert.AlertType.ERROR, "No es posible regresar a la ventana principal");
+            a.show();
+        }
     }
 
     @FXML
@@ -137,6 +141,28 @@ public class PantallaInicialController implements Initializable {
         catch(IOException ex){
             Alert a = new Alert(Alert.AlertType.ERROR, "No es posible cerrar sesión");
             a.show();
+        }
+    }
+
+    @FXML
+    private void visualizarAlbumes(MouseEvent event) {
+        hboxAlbumes.getChildren().clear();
+        ArrayList<Album> albumes = Album.readFromFile("albumes.txt");
+        for(Album album: albumes){
+            if(Objects.equals(album.getNombreUsuario(),this.usuario.getNombreUsuario())){
+                VBox vboxAlbumes = new VBox();
+                Label lbl = new Label();
+                Image img = new Image("img/carpeta.png");
+                ImageView imgview = new ImageView(img); //falta poner opcion de acceder al album al darle click a la imagen
+                imgview.setFitHeight(280);
+                imgview.setFitWidth(200);
+                lbl.setText(album.getNombre());
+                vboxAlbumes.getChildren().add(lbl);
+                vboxAlbumes.getChildren().add(imgview);
+                vboxAlbumes.setSpacing(10);
+                vboxAlbumes.setAlignment(Pos.CENTER);
+                hboxAlbumes.getChildren().add(vboxAlbumes);
+            }
         }
     }
 }

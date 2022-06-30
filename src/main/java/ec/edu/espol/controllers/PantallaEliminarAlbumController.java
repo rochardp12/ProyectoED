@@ -5,21 +5,16 @@
  */
 package ec.edu.espol.controllers;
 
-import ec.edu.espol.model.Album;
-import ec.edu.espol.model.AlbumExistenteException;
-import ec.edu.espol.model.PanelVacioException;
 import ec.edu.espol.model.Usuario;
 import ec.edu.espol.proyectoed_pp.App;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -28,21 +23,18 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Richard
+ * @author User
  */
-public class PantallaCrearAlbumController implements Initializable {
+public class PantallaEliminarAlbumController implements Initializable {
 
-    @FXML
-    private Button btnCrearAlbum;
     @FXML
     private Button btnRegresar;
     @FXML
-    private TextField infoNombre;
+    private Button btnEliminar;
     @FXML
-    private TextField infoDesc;
-    @FXML
-    private Button btnLimpiar;
+    private TextField infoAlbum;
     private Usuario usuario;
+
     /**
      * Initializes the controller class.
      */
@@ -51,19 +43,14 @@ public class PantallaCrearAlbumController implements Initializable {
         // TODO
     }    
 
+
     @FXML
-    private void crearAlbum(MouseEvent event){
-        try{
-            if(Objects.equals(infoNombre.getText(),"") || Objects.equals(infoDesc.getText(),""))
-                throw new PanelVacioException("Ingrese todos los datos por favor");
-            if(Album.verificarNombreAlbum(infoNombre.getText().toUpperCase()))
-                throw new AlbumExistenteException("Nombre de album ya existente, ingrese uno nuevo");
-            Album.crearAlbum(infoNombre.getText(), infoDesc.getText(), usuario.getNombreUsuario());
-        }
-        catch(PanelVacioException | AlbumExistenteException ex){
-            Alert a = new Alert(AlertType.ERROR, ex.getMessage());
-            a.show();
-        }
+    private void eliminarAlbum(MouseEvent event) {
+        
+    }
+    
+    public void recibirUsuario(Usuario usuario){
+        this.usuario = usuario;
     }
 
     @FXML
@@ -83,15 +70,5 @@ public class PantallaCrearAlbumController implements Initializable {
             Alert a = new Alert(Alert.AlertType.ERROR, "No es posible regresar a la ventana principal");
             a.show();
         }
-    }
-
-    @FXML
-    private void limpiarDatos(MouseEvent event) {
-        infoNombre.setText("");
-        infoDesc.setText("");
-    }
-    
-    public void recibirUsuario(Usuario usuario){
-        this.usuario = usuario;
     }
 }

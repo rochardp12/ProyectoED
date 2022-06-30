@@ -1,1 +1,3 @@
 Richard|Perez|ROCHARD|GATITOS123
+Richard|Perez|RIC|HOLA
+Richard|Perez|RICFFFF|HOLA

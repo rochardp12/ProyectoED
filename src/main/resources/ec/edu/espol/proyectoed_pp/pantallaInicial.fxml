@@ -36,9 +36,10 @@
                         <Image url="@../../../../img/flores.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="btnVisualizar" mnemonicParsing="false" onMouseClicked="#visualizarAlbumes" text="&gt;VISUALIZAR&lt;" />
                </children>
             </HBox>
-            <Line endX="371.29290771484375" endY="-1.9999721050262451" startX="-100.0" />
+            <Line endX="486.29290771484375" endY="0.12196427583694458" startX="-100.0" />
          </children>
       </VBox>
    </top>

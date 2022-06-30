@@ -22,46 +22,57 @@ public class Album <E> {
     private String nombre;
     private CircularDoubleLinkedList<Imagen> imagenes; 
     private String desc;
+    private String nombreUsuario;
 
-    public Album(String nombre, String desc) {
+    public Album(String nombre, String desc, String nombreUsuario) {
         this.nombre = nombre.toUpperCase();
         this.imagenes = new CircularDoubleLinkedList<>();
         this.desc = desc.toUpperCase();
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getNombre() {
-        return nombre;
+    public CircularDoubleLinkedList<Imagen> getImagenes() {
+        return imagenes;
     }
-    
 
-    public void setImagenes(CircularDoubleLinkedList imagenes) {
+    public void setImagenes(CircularDoubleLinkedList<Imagen> imagenes) {
         this.imagenes = imagenes;
     }
 
-    public CircularDoubleLinkedList getImagenes() {
-        return imagenes;
-    }
-    
-    public void setDesc(String desc){
-        this.desc = desc;
-    }
-    
-    public String getDesc(){
+    public String getDesc() {
         return desc;
     }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
     
-    public static void crearAlbum(String nombre, String desc){
-        Album album = new Album(nombre,desc);
+    
+    public static void crearAlbum(String nombre, String desc, String nombreUsuario){
+        Album album = new Album(nombre,desc,nombreUsuario);
         album.saveFile("albumes.txt");
     }
     
     public void saveFile(String nomfile){
         try(BufferedWriter bf = new BufferedWriter(new FileWriter(nomfile, true))){
-            bf.write(this.nombre + "|" + this.desc + "\n");
+            bf.write(this.nombreUsuario + "|" + this.nombre + "|" + this.desc + "\n");
             Alert a = new Alert(AlertType.CONFIRMATION, "Álbum agregado con éxito");
             a.show();
         }
@@ -77,7 +88,7 @@ public class Album <E> {
             String linea;
             while((linea = bf.readLine()) != null){
                 String[] arreglo = linea.split("\\|");
-                Album album = new Album(arreglo[0],arreglo[1]);
+                Album album = new Album(arreglo[1],arreglo[2],arreglo[0]);
                 albumes.addLast(album);
             }
         }
